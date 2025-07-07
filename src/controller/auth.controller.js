@@ -24,7 +24,9 @@ const handleLogin = asyncHandler(async (req, res) => {
     expiresIn: '24h',
   });
 
-  return res.status(200).json(new ApiResponse(200, token, 'Login Successful'));
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { token }, 'Login Successful'));
 });
 
 export { handleLogin };
