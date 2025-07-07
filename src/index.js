@@ -33,7 +33,7 @@ app.use(
 
 //! test route
 // eslint-disable-next-line no-unused-vars
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   req.status(200).send('OK');
 });
 
