@@ -6,6 +6,10 @@ import morgan from 'morgan';
 import chalk from 'chalk';
 import connectDB from './db/index.js';
 import { healthCheckRouter } from './routes/healthcheck.routes.js';
+import { adminRouter } from './routes/admin.routes.js';
+import { visitorRouter } from './routes/visitor.routes.js';
+import { contactRouter } from './routes/contact.routes.js';
+import { authRouter } from './routes/auth.routes.js';
 
 const PORT = process.env.PORT || '5001';
 const morganFormat = ':method :url :status :response-time';
@@ -27,14 +31,18 @@ app.use(
 );
 
 //! health check route
-app.use('/api/v1', healthCheckRouter);
+app.use('/api', healthCheckRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/visitors', visitorRouter);
+app.use('/api/contact', contactRouter);
+app.use('/api/auth', authRouter);
 
 connectDB()
   .then(() => {
     //! app listening
     app.listen(PORT, () => {
       console.log(
-        `Server is running at http://localhost:${PORT}/api/v1/healthcheck`,
+        `Server is running at http://localhost:${PORT}/api/healthcheck`,
       );
     });
   })
