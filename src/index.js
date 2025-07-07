@@ -32,9 +32,9 @@ app.use(
 );
 
 //! test route
-// eslint-disable-next-line no-unused-vars
+
 app.get('/', (req, res) => {
-  req.status(200).send('OK');
+  res.status(200).send('OK');
 });
 
 //! health check route
