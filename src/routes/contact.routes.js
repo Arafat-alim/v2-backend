@@ -5,6 +5,6 @@ import { contactSchema } from '../validators/contact.validator.js';
 
 const contactRouter = Router();
 
-contactRouter.route('/').post(validate(contactSchema), submitContact);
+contactRouter.route('/').post(submitContact);
 
 export { contactRouter };

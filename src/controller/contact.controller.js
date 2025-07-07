@@ -2,9 +2,11 @@ import { asyncHandler } from '../utils/asyncHandler.js';
 import { Message } from '../model/Message.js';
 import { sendDiscordNotification } from '../utils/sendDiscordNotification.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
+import { contactSchema } from '../validators/contact.validator.js';
 
 const submitContact = asyncHandler(async (req, res) => {
-  const { name, email, subject, message } = req.body;
+  const data = contactSchema.parse(req.body);
+  const { name, email, subject, message } = data;
 
   const msgData = await Message.create({
     name,

@@ -1,11 +1,13 @@
 import { ApiResponse } from '../utils/ApiResponse.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { sendDiscordNotification } from '../utils/sendDiscordNotification.js';
+import { visitorSchema } from '../validators/visitor.validator.js';
 
 import { Visitor } from '../model/Visitor.js';
 
 const trackVisitor = asyncHandler(async (req, res) => {
-  const { timestamp, userAgent, referrer } = req.body;
+  const data = visitorSchema.parse(req.body);
+  const { timestamp, userAgent, referrer } = data;
 
   //! Get Client IP
   const ip =
