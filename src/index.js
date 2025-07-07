@@ -31,6 +31,12 @@ app.use(
   }),
 );
 
+//! test route
+// eslint-disable-next-line no-unused-vars
+app.use('/', (req, res) => {
+  req.status(200).send('OK');
+});
+
 //! health check route
 app.use('/api', healthCheckRouter);
 app.use('/api/admin', adminRouter);
