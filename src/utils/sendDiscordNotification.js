@@ -1,4 +1,4 @@
-import { DISCORD_WEBHOOK_URL } from '../constants';
+import { DISCORD_WEBHOOK_URL } from '../constants.js';
 
 async function sendDiscordNotification(type, data) {
   if (!DISCORD_WEBHOOK_URL) return;
