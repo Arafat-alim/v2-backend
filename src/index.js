@@ -10,6 +10,7 @@ import { adminRouter } from './routes/admin.routes.js';
 import { visitorRouter } from './routes/visitor.routes.js';
 import { contactRouter } from './routes/contact.routes.js';
 import { authRouter } from './routes/auth.routes.js';
+import { errorHandler } from './middleware/error.middleware.js';
 
 const PORT = process.env.PORT || '5001';
 const morganFormat = ':method :url :status :response-time';
@@ -36,6 +37,9 @@ app.use('/api/admin', adminRouter);
 app.use('/api/visitors', visitorRouter);
 app.use('/api/contact', contactRouter);
 app.use('/api/auth', authRouter);
+
+// Error Handler
+app.use(errorHandler);
 
 connectDB()
   .then(() => {
