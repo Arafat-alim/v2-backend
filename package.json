@@ -1,0 +1,40 @@
+{
+  "name": "v2-backend",
+  "version": "1.0.0",
+  "description": "It provide the backend support to the version second of portfolio",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "vercel-build": "echo vercel",
+    "format": "prettier --write \"src/**/*.js\"",
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "eslint \"src/**/*.js\" --fix"
+  },
+  "keywords": [
+    "arafat-aman-alim",
+    "node-backend",
+    "backend-support"
+  ],
+  "author": "Arafat Aman Alim <dev.arafat.alim@gmail.com>",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^10.1.5",
+    "globals": "^16.3.0",
+    "lint-staged": "^16.1.2",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.1",
+    "morgan": "^1.10.0",
+    "winston": "^3.17.0"
+  }
+}
