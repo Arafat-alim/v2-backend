@@ -1,6 +1,9 @@
-	/.vscode
-	/node_modules
-	/.dist
-	*.env
-	.env
-	.env.
+/node_modules
+/.dist
+/.vscode
+*.env
+.env
+.env.*
+app.log
+build/
+dist/

@@ -3,23 +3,24 @@ import 'dotenv/config';
 import { app } from './app.js';
 import logger from './utils/logger.js';
 import morgan from 'morgan';
+import chalk from 'chalk';
 import connectDB from './db/index.js';
 import { healthCheckRouter } from './routes/healthcheck.routes.js';
 
 const PORT = process.env.PORT || '5001';
-const morganFormat = ':method :url :status :response-time ms';
+const morganFormat = ':method :url :status :response-time';
 
 app.use(
   morgan(morganFormat, {
     stream: {
       write: (message) => {
-        const logObject = {
-          method: message.split(' ')[0],
-          url: message.split(' ')[1],
-          status: message.split(' ')[2],
-          responseTime: message.split(' ')[3],
-        };
-        logger.info(JSON.stringify(logObject));
+        const parts = message.trim().split(' ');
+        const method = parts[0];
+        const url = parts[1];
+        const status = parts[2];
+        const responseTime = parts[3];
+        const coloredMessage = `${chalk.blue(method)} ${chalk.cyan(url)} ${chalk.yellow(status)} ${chalk.magenta(responseTime + 'ms')}`;
+        logger.info(coloredMessage);
       },
     },
   }),

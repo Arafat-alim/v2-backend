@@ -10,7 +10,9 @@
     "vercel-build": "echo vercel",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "eslint \"src/**/*.js\"",
-    "lint:fix": "eslint \"src/**/*.js\" --fix"
+    "lint:fix": "eslint \"src/**/*.js\" --fix",
+    "create:nvmrc": "node -v > .nvmrc",
+    "prepare": "husky"
   },
   "keywords": [
     "arafat-aman-alim",
@@ -25,11 +27,13 @@
     "eslint": "^9.30.1",
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.3.0",
+    "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2"
   },
   "dependencies": {
+    "chalk": "^5.4.1",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",

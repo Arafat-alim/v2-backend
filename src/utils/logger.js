@@ -1,23 +1,36 @@
 import { createLogger, format, transports } from 'winston';
-const { combine, timestamp, json, colorize } = format;
+import chalk from 'chalk';
+
+const { combine, timestamp, printf } = format;
 
 // Custom format for console logging with colors
-const consoleLogFormat = format.combine(
-  format.colorize(),
-  // eslint-disable-next-line no-unused-vars
-  format.printf(({ level, message, _timestamp }) => {
-    return `${level}: ${message}`;
+const consoleLogFormat = combine(
+  timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+  printf(({ level, message, timestamp }) => {
+    let coloredLevel;
+    switch (level) {
+      case 'info':
+        coloredLevel = chalk.blue.bold(level.toUpperCase());
+        break;
+      case 'warn':
+        coloredLevel = chalk.yellow.bold(level.toUpperCase());
+        break;
+      case 'error':
+        coloredLevel = chalk.red.bold(level.toUpperCase());
+        break;
+      default:
+        coloredLevel = level.toUpperCase();
+    }
+    return `[${timestamp}] ${coloredLevel}: ${message}`;
   }),
 );
 
 // Create a Winston logger
 const logger = createLogger({
   level: 'info',
-  format: combine(colorize(), timestamp(), json()),
+  format: consoleLogFormat,
   transports: [
-    new transports.Console({
-      format: consoleLogFormat,
-    }),
+    new transports.Console(),
     new transports.File({ filename: 'app.log' }),
   ],
 });
